@@ -1,8 +1,8 @@
-# Agent Instructions for rust-gigachat-app
+# Agent Instructions for edu-rust-gigachat-app-backend
 
 ## Project Overview
 
-rust-gigachat-app is a teaching demo: a Rust + Rocket web API with optional
+edu-rust-gigachat-app-backend is a teaching demo: a Rust + Rocket web API with optional
 GigaChat integration and a mock mode for offline use. It is designed as
 course material for first-year students (semester 2) in an IT education track.
 
@@ -59,6 +59,8 @@ git config merge.beads.driver true
 ```
 
 Используйте `bd sync` только как fallback, если auto‑sync/хуки не сработали.
+`bd sync` **по умолчанию выполняет `git pull` и `git push`**, поэтому отдельный
+`git pull` до/после него не нужен и нарушает порядок.
 
 Полезные команды:
 - `bd ready` — найти доступную работу
@@ -76,7 +78,7 @@ git config merge.beads.driver true
 4. **Подготовить индекс:** добавить изменения в индекс (`git add -A`).
 5. **Коммит проекта:** первая строка коммита должна начинаться с ID issue
    и содержать тип и приоритет в современном формате:
-   `<issue-id> <type>(P#): <issue title>`.
+   `[<issue-id>] <type>(P#): <issue title>`.
    Тело коммита должно совпадать с `--description`. После описания
    добавьте список изменённых файлов (см. шаблон ниже).
 6. **Закрытие задачи:** `bd close <id>` выполняется после коммита проекта.
@@ -89,6 +91,8 @@ git config merge.beads.driver true
 Повторный push допускается только если `bd sync` не выполнялся
 или завершился с ошибкой.
 
+ID задач для этого репозитория имеют префикс `ergab-` (строчные буквы).
+
 **Шаблон коммита (issue → commit):**
 ```bash
 ID="<issue id>"
@@ -96,7 +100,7 @@ TYPE="<issue type>"
 PRIO="<issue priority>"
 TITLE="<issue title>"
 DESC="<issue description>"
-HEADER="$ID $TYPE($PRIO): $TITLE"
+HEADER="[$ID] $TYPE($PRIO): $TITLE"
 FILES=$(git diff --cached --name-only | sed 's/^/- /')
 printf "%s\n\n%s\n\nИзменения:\n%s\n" "$HEADER" "$DESC" "$FILES" | git commit -F -
 ```
@@ -108,7 +112,7 @@ TYPE="<issue type>"
 PRIO="<issue priority>"
 TITLE="<issue title>"
 DESC="<issue description>"
-HEADER="$ID $TYPE($PRIO): $TITLE"
+HEADER="[$ID] $TYPE($PRIO): $TITLE"
 FILES=$(git diff --cached --name-status | awk '
   {
     code=$1; from=$2; to=$3;

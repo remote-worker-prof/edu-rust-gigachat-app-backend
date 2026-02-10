@@ -65,7 +65,9 @@ git config merge.beads.driver true
 
 Ручные команды `bd sync / bd export / bd import` используются только как
 резервный вариант, если auto‑sync/хуки по какой‑то причине не сработали.
-Если используется `bd sync`, он коммитит **только** `.beads/issues.jsonl`
+`bd sync` **по умолчанию выполняет `git pull` и `git push`**, поэтому отдельный
+`git pull` до/после него не нужен. Если используется `bd sync`, он коммитит
+**только** `.beads/issues.jsonl`
 и **не коммитит** изменения проекта. Поэтому:
 
 - изменения проекта всегда добавляйте в индекс (`git add -A`);
@@ -115,9 +117,11 @@ rm -rf .beads && bd init
 ## 6.1. Правила сообщения коммита (issue → commit)
 
 Требование:
-- первая строка в формате **`<issue-id> <type>(P#): <issue title>`**;
+- первая строка в формате **`[<issue-id>] <type>(P#): <issue title>`**;
 - тело коммита **совпадает с `--description`**;
 - после описания идёт **список изменённых файлов**.
+
+ID задач для этого репозитория имеют префикс `ergab-` (строчные буквы).
 
 Памятка статусов (общепринятая git-нотация):
 - A — файл создан (Added)
@@ -133,7 +137,7 @@ TYPE="<issue type>"
 PRIO="<issue priority>"
 TITLE="<issue title>"
 DESC="<issue description>"
-HEADER="$ID $TYPE($PRIO): $TITLE"
+HEADER="[$ID] $TYPE($PRIO): $TITLE"
 FILES=$(git diff --cached --name-only | sed 's/^/- /')
 printf "%s\n\n%s\n\nИзменения:\n%s\n" "$HEADER" "$DESC" "$FILES" | git commit -F -
 ```
@@ -145,7 +149,7 @@ TYPE="<issue type>"
 PRIO="<issue priority>"
 TITLE="<issue title>"
 DESC="<issue description>"
-HEADER="$ID $TYPE($PRIO): $TITLE"
+HEADER="[$ID] $TYPE($PRIO): $TITLE"
 FILES=$(git diff --cached --name-status | awk '
   {
     code=$1; from=$2; to=$3;

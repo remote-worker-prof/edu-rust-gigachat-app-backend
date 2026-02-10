@@ -14,7 +14,7 @@
 # Клонируйте репозиторий (замените URL)
 git clone <URL_репозитория>
 # Перейдите в каталог репозитория (имя может отличаться)
-cd rust-gigachat-app
+cd edu-rust-gigachat-app-backend
 
 # Проверьте версию Rust
 rustc --version

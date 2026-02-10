@@ -1,4 +1,4 @@
-# CORS для rust-gigachat-webapp (Rocket 0.5)
+# CORS для edu-rust-gigachat-app-frontend (Rocket 0.5)
 
 Документ предназначен для студентов и преподавателей и описывает, как добавить
 CORS‑поддержку в backend (Rocket), чтобы учебный UI мог обращаться к API.
@@ -135,5 +135,5 @@ curl -i -X OPTIONS \
 - `docs/common_issues.md` — объяснение ошибки CORS для студентов.
 - `docs/api_examples.md` — примеры запросов к API.
 - `docs/student_guide.md` — общие правила запуска.
-- В проекте UI: `rust-gigachat-webapp/docs/common_issues.md` и
-  `rust-gigachat-webapp/docs/build_and_run.md`.
+- В проекте UI: `edu-rust-gigachat-app-frontend/docs/common_issues.md` и
+  `edu-rust-gigachat-app-frontend/docs/build_and_run.md`.
