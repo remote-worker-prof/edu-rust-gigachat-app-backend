@@ -1,0 +1,28 @@
+# Rust
+/target/
+**/*.rs.bk
+*.pdb
+Cargo.lock
+
+# Переменные окружения
+.env
+
+# Секретные файлы (токены, ключи)
+misc/
+*.key
+*api-key*
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+*.Identifier
+
+# Логи
+*.log
