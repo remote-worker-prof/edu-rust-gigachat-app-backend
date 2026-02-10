@@ -37,6 +37,55 @@ ssh-add ~/.ssh/id_ed25519
 
 Если ключ называется иначе — укажите свой файл.
 
+### Почему пароль может запрашиваться снова
+
+`ssh-agent` хранит ключи **только в памяти процесса**. Если при каждом открытии
+терминала запускается новый агент, то ключи «теряются», и пароль требуется снова.
+Это нормально, но неудобно.
+
+### Как сделать так, чтобы пароль вводился один раз за сессию WSL
+
+Ниже — простой и устойчивый вариант для `bash`: один агент на сессию, а ключ
+добавляется только если он ещё не добавлен.
+
+Добавьте в `~/.bashrc`:
+
+```bash
+# ----- ssh-agent (persistent across terminals) -----
+SSH_KEY="$HOME/.ssh/id_ed25519"
+SSH_AGENT_ENV="$HOME/.ssh/agent.env"
+
+load_ssh_agent() {
+  if [ -f "$SSH_AGENT_ENV" ]; then
+    # shellcheck disable=SC1090
+    . "$SSH_AGENT_ENV" >/dev/null 2>&1
+  fi
+
+  if [ -n "$SSH_AUTH_SOCK" ] && [ -S "$SSH_AUTH_SOCK" ]; then
+    return 0
+  fi
+
+  eval "$(ssh-agent -s)" >/dev/null
+  umask 077
+  {
+    echo "export SSH_AUTH_SOCK=$SSH_AUTH_SOCK"
+    echo "export SSH_AGENT_PID=$SSH_AGENT_PID"
+  } > "$SSH_AGENT_ENV"
+}
+
+load_ssh_agent
+
+if [ -t 1 ] && [ -f "$SSH_KEY" ]; then
+  if ! ssh-add -l >/dev/null 2>&1; then
+    ssh-add "$SSH_KEY" >/dev/null 2>&1 || true
+  fi
+fi
+```
+
+После этого:
+- пароль вводится один раз после перезапуска WSL,
+- в новых терминалах ключ уже доступен без повторного ввода.
+
 ### Windows (PowerShell, OpenSSH)
 
 ```powershell
@@ -93,6 +142,11 @@ cat ~/.ssh/id_ed25519.pub
 **WSL (копирование в буфер Windows):**
 ```bash
 clip.exe < ~/.ssh/id_ed25519.pub
+```
+
+Если `clip.exe` не работает в вашей bash‑сессии, просто выведите ключ в терминал:
+```bash
+cat ~/.ssh/id_ed25519.pub
 ```
 
 **Windows (PowerShell):**
