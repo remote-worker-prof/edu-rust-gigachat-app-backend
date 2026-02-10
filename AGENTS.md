@@ -47,7 +47,11 @@ powershell -ExecutionPolicy Bypass -File demo_mock.ps1
 ## Issue Tracking
 
 This project uses **bd (beads)** for issue tracking.
-Run `bd prime` for workflow context, or install hooks (`bd hooks install`) for auto-injection.
+Recommended mode (per beads docs): auto‑sync + git hooks + merge‑driver.
+If this is a fresh clone, run `bd init` once (merge‑driver) and then `bd hooks install`.
+Use `bd sync` only as a fallback if auto‑sync fails.
+
+Run `bd prime` for workflow context.
 
 Quick reference:
 - `bd ready` - Find unblocked work
