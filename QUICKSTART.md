@@ -156,6 +156,8 @@ taskkill /F /IM rust-gigachat-demo.exe
 # Linux/macOS
 pkill rust-gigachat-demo
 ```
+Имя процесса соответствует имени бинарника в `Cargo.toml`.
+Если у вас другое имя, замените его в командах выше.
 
 ### Другие проблемы
 Смотрите: [docs/common_issues.md](docs/common_issues.md)
