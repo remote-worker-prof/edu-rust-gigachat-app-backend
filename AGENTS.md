@@ -55,7 +55,7 @@ Run `bd prime` for workflow context.
 
 Quick reference:
 - `bd ready` - Find unblocked work
-- `bd create "Title" --type task --priority 2` - Create issue
+- `bd create "Title" --type task --priority 2 --description "Why/what"` - Create issue with context
 - `bd update <id> --status in_progress` - Claim work
 - `bd close <id>` - Complete work
 - `bd sync` - Sync with git (if this repo is a git repo)
