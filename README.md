@@ -183,6 +183,37 @@ powershell -ExecutionPolicy Bypass -File demo_mock.ps1
 
 Скрипт протестирует все эндпоинты и покажет ответы mock AI-сервиса.
 
+## Git и beads (учебный workflow)
+
+В проекте используется встроенный issue‑трекер **beads**. Рекомендуемый режим:
+
+```bash
+bd init
+bd hooks install
+git config merge.beads.driver true
+```
+
+Задачи создаются с кратким описанием (`--description`), а синхронизация с git
+обычно выполняется автоматически через хуки. При сбоях используйте `bd sync`.
+`bd sync` коммитит **только** `.beads/issues.jsonl` и **не**
+коммитит изменения проекта. Поэтому изменения проекта нужно
+закоммитить вручную после `git add -A`.
+
+Требование к сообщению коммита (после `git add -A`):
+- первая строка в формате `<issue-id> <type>(P#): <issue title>`;
+- тело коммита совпадает с `--description`;
+- после описания добавляется список изменённых файлов со статусами (A/M/D/R/C).
+
+Памятка статусов (общепринятая git-нотация):
+- A — файл создан (Added)
+- M — файл изменён (Modified)
+- D — файл удалён (Deleted)
+- R — файл переименован (Renamed)
+- C — файл скопирован (Copied)
+
+Подробности: `lab_materials/beads_guide.md`, `lab_materials/git_version_control.md`,
+`lab_materials/git_github_setup.md`.
+
 ## ⚙️ Конфигурация
 
 Основной конфигурационный файл - `config.toml`. В нем можно настроить:
