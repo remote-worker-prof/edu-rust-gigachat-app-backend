@@ -14,7 +14,7 @@ environment = "development"
 [gigachat]
 # Использовать ли реальный GigaChat API (true) или заглушку (false)
 # Если false, приложение будет работать с mock-ответами
-enabled = true
+enabled = false
 
 # Модель GigaChat для использования
 # Возможные значения: "GigaChat", "GigaChat-Plus", "GigaChat-Pro"
