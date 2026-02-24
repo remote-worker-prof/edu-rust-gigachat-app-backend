@@ -122,6 +122,19 @@ curl -i -X OPTIONS \
 
 В ответе должны быть заголовки `Access-Control-Allow-*`.
 
+## 5.1. Последовательность CORS‑взаимодействия (что происходит в браузере)
+
+1. UI пытается отправить `POST http://127.0.0.1:8000/ask` с `Content-Type: application/json`.
+2. Браузер видит “нестандартный” запрос и запускает preflight.
+3. Отправляется `OPTIONS /ask` с заголовками `Origin`, `Access-Control-Request-Method`,
+   `Access-Control-Request-Headers`.
+4. Backend обрабатывает `OPTIONS /ask` и возвращает `204 No Content`.
+5. В ответе присутствуют заголовки `Access-Control-Allow-*` (origin, методы, заголовки).
+6. Браузер проверяет заголовки и разрешает основной запрос.
+7. Отправляется реальный `POST /ask`.
+8. Backend возвращает JSON‑ответ + те же CORS‑заголовки.
+9. UI получает ответ и отображает результат.
+
 ## 6. Важные примечания
 
 - В учебной среде допустимо использовать `Access-Control-Allow-Origin: *`,

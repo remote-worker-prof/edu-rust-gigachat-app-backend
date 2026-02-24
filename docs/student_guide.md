@@ -116,6 +116,14 @@ powershell -ExecutionPolicy Bypass -File demo_mock.ps1
 - Разрешить заголовок `Content-Type`
 - Обрабатывать preflight‑запросы `OPTIONS`
 
+Последовательность CORS‑запроса в браузере:
+
+1. UI отправляет `POST http://127.0.0.1:8000/ask`.
+2. Браузер запускает preflight и делает `OPTIONS /ask`.
+3. Backend отвечает `204 No Content` + `Access-Control-Allow-*`.
+4. Браузер разрешает основной запрос.
+5. Отправляется `POST /ask`, backend возвращает JSON + CORS‑заголовки.
+
 Рекомендуемое решение для учебной среды описано в документе `docs/cors_for_webapp.md`. В нем приведен минимальный и воспроизводимый вариант настройки CORS для Rocket без сторонних крейтов.
 
 ## 8. SSH‑ключи и GitHub (пароль на каждом запуске терминала)
