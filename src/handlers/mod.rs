@@ -52,12 +52,13 @@ use rocket::State;
 
 // Макросы маршрутизации - ОБЯЗАТЕЛЬНО импортировать явно!
 // Rocket 0.5 требует явного импорта, в отличие от старых версий.
-use rocket::{get, post, catch};
+use rocket::{catch, get, options, post};
 
 // tracing - библиотека структурированного логирования.
 // info! - информационные сообщения
 // error! - сообщения об ошибках
 use tracing::{error, info};
+use std::path::PathBuf;
 
 use crate::config::AppConfig;
 use crate::models::{AskRequest, AskResponse, ErrorResponse, HealthResponse};
@@ -256,6 +257,16 @@ pub async fn ask(
             )))
         }
     }
+}
+
+/// Обработчик preflight-запросов для CORS (OPTIONS).
+///
+/// Rocket не создаёт OPTIONS‑маршруты автоматически, поэтому браузерный
+/// preflight завершался 404. Этот handler возвращает 204 No Content
+/// для любых путей API, позволяя браузеру продолжить POST/GET запрос.
+#[options("/<_path..>")]
+pub fn cors_preflight(_path: PathBuf) -> rocket::http::Status {
+    rocket::http::Status::NoContent
 }
 
 // ============================================================================

@@ -66,8 +66,11 @@ mod services;
 
 // Импорт конкретных элементов из модулей для удобства использования
 use config::AppConfig;
-use handlers::{ask, health, index, internal_error, not_found, unprocessable_entity};
+use handlers::{ask, cors_preflight, health, index, internal_error, not_found, unprocessable_entity};
 use services::AiServiceFactory;
+use rocket::fairing::{Fairing, Info, Kind};
+use rocket::http::Header;
+use rocket::{Request, Response};
 
 // tracing - современная библиотека логирования для Rust
 // Преимущества над println!:
@@ -80,6 +83,34 @@ use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
 // ============================================================================
 // ИНИЦИАЛИЗАЦИЯ ЛОГИРОВАНИЯ
 // ============================================================================
+
+/// CORS‑fairing: добавляет заголовки для доступа из web‑UI.
+struct Cors;
+
+#[rocket::async_trait]
+impl Fairing for Cors {
+    fn info(&self) -> Info {
+        Info {
+            name: "Add CORS headers",
+            kind: Kind::Response,
+        }
+    }
+
+    async fn on_response<'r>(&self, _req: &'r Request<'_>, res: &mut Response<'r>) {
+        res.set_header(Header::new(
+            "Access-Control-Allow-Origin",
+            "http://127.0.0.1:8080",
+        ));
+        res.set_header(Header::new(
+            "Access-Control-Allow-Methods",
+            "GET, POST, OPTIONS",
+        ));
+        res.set_header(Header::new(
+            "Access-Control-Allow-Headers",
+            "Content-Type",
+        ));
+    }
+}
 
 /// Инициализирует систему логирования.
 ///
@@ -284,6 +315,7 @@ fn rocket() -> _ {
     // .mount("/", routes![...])   - регистрирует обработчики по пути "/"
     // .register("/", catchers![...]) - регистрирует обработчики ошибок
     rocket::custom(figment)
+        .attach(Cors)
         .manage(config)      // State<AppConfig> - доступен через &State<AppConfig>
         .manage(ai_service)  // State<Box<dyn AiService>> - AI сервис
         // ─────────────────────────────────────────────────────────────────
@@ -305,7 +337,7 @@ fn rocket() -> _ {
         //
         // catchers! работает аналогично для функций с #[catch(код)]
         // ─────────────────────────────────────────────────────────────────
-        .mount("/", routes![index, health, ask])
+        .mount("/", routes![index, health, ask, cors_preflight])
         .register("/", catchers![not_found, internal_error, unprocessable_entity])
 }
 
