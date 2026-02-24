@@ -298,7 +298,8 @@ fn rocket() -> _ {
     // Здесь мы переопределяем адрес и порт из нашего config.toml.
     let figment = rocket::Config::figment()
         .merge(("address", config.server.address.clone()))
-        .merge(("port", config.server.port));
+        .merge(("port", config.server.port))
+        .merge(("cli_colors", false));
 
     info!("🌐 Сервер будет запущен на {}:{}", config.server.address, config.server.port);
 
