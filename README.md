@@ -52,7 +52,7 @@
 │   ├── common_issues.md
 │   ├── cors_for_webapp.md
 │   └── architecture.md
-└── lab_materials       # Learning materials for students
+└── lab       # Learning materials for students
     ├── lab_work.md
     ├── library_reference.md
     └── ...
@@ -215,8 +215,8 @@ ID задач для этого репозитория имеют префикс
 - R — файл переименован (Renamed)
 - C — файл скопирован (Copied)
 
-Подробности: `lab_materials/beads_guide.md`, `lab_materials/git_version_control.md`,
-`lab_materials/git_github_setup.md`.
+Подробности: `lab/beads_guide.md`, `lab/git_version_control.md`,
+`lab/git_github_setup.md`.
 
 ## ⚙️ Конфигурация
 
@@ -279,8 +279,8 @@ cargo doc --open
 - 📖 [Руководство для студентов](docs/student_guide.md) - пошаговое руководство по работе с проектом
 - 🔧 [Часто встречающиеся проблемы](docs/common_issues.md) - решения типичных ошибок и подводных камней
 - 🌐 [CORS для web-интерфейса](docs/cors_for_webapp.md) - рекомендации по настройке доступа из браузера
-- 📚 [Справочник по библиотекам](lab_materials/library_reference.md) - детальное описание используемых зависимостей
-- 🎓 [Лабораторные материалы](lab_materials/) - полный комплект учебных материалов
+- 📚 [Справочник по библиотекам](lab/library_reference.md) - детальное описание используемых зависимостей
+- 🎓 [Лабораторные материалы](lab/) - полный комплект учебных материалов
 - 🌐 [Примеры API запросов](docs/api_examples.md) - сравнение curl, HTTPie и PowerShell
 
 ## ⚠️ Важные нюансы и подводные камни

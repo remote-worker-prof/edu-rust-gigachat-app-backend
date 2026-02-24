@@ -114,7 +114,7 @@ cargo test
 2. 🎓 **[docs/student_guide.md](docs/student_guide.md)** - руководство для студентов
 3. 🌐 **[docs/api_examples.md](docs/api_examples.md)** - примеры запросов
 4. 🔧 **[docs/common_issues.md](docs/common_issues.md)** - решение проблем
-5. 📚 **[lab_materials/library_reference.md](lab_materials/library_reference.md)** - справочник по библиотекам
+5. 📚 **[lab/library_reference.md](lab/library_reference.md)** - справочник по библиотекам
 6. 🏗️ **[docs/architecture.md](docs/architecture.md)** - архитектура проекта
 
 ## 🚀 Шаг 7 (опционально): Подключите GigaChat
@@ -165,7 +165,7 @@ pkill rust-gigachat-demo
 ## 📖 Дальше что?
 
 1. **Изучите код** - читайте комментарии в `src/`
-2. **Выполните лабораторную** - смотрите `lab_materials/lab_work.md`
+2. **Выполните лабораторную** - смотрите `lab/lab_work.md`
 3. **Экспериментируйте** - измените mock-ответы, добавьте эндпоинты
 4. **Задавайте вопросы** - преподавателю или в чате группы
 
