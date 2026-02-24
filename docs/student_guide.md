@@ -138,6 +138,13 @@ powershell -ExecutionPolicy Bypass -File demo_mock.ps1
 В проекте используется **beads** для хранения задач прямо в репозитории.
 Рекомендуемый учебный workflow описан в документе `lab/beads_guide.md`.
 
+## 10. Облачная практика (Yandex Cloud)
+
+Для углублённой практики предусмотрена лабораторная работа №3 (Backend) по
+развёртыванию serverless‑контейнера:
+
+- `lab-cloud/lab_yc_serverless_application.md`
+
 **Best practice:** создавайте задачи с `--description`, чтобы сохранять контекст
 и облегчать проверку выполненной работы.
 

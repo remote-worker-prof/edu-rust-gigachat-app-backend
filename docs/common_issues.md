@@ -290,6 +290,7 @@ rustc --explain E0308
 - **Основная документация:** `README.md`
 - **Справочник по библиотекам:** `lab/library_reference.md`
 - **Учебные материалы:** `lab/`
+- **Облачная лабораторная (Backend):** `lab-cloud/lab_yc_serverless_application.md`
 - **Примеры кода:** `examples/`
 
 ---

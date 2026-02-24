@@ -115,6 +115,7 @@ cargo test
 3. 🌐 **[docs/api_examples.md](docs/api_examples.md)** - примеры запросов
 4. 🔧 **[docs/common_issues.md](docs/common_issues.md)** - решение проблем
 5. 📚 **[lab/library_reference.md](lab/library_reference.md)** - справочник по библиотекам
+6. ☁️ **[lab-cloud/lab_yc_serverless_application.md](lab-cloud/lab_yc_serverless_application.md)** - лабораторная работа №3 (Backend, Yandex Cloud)
 6. 🏗️ **[docs/architecture.md](docs/architecture.md)** - архитектура проекта
 
 ## 🚀 Шаг 7 (опционально): Подключите GigaChat

@@ -281,6 +281,7 @@ cargo doc --open
 - 🌐 [CORS для web-интерфейса](docs/cors_for_webapp.md) - рекомендации по настройке доступа из браузера
 - 📚 [Справочник по библиотекам](lab/library_reference.md) - детальное описание используемых зависимостей
 - 🎓 [Лабораторные материалы](lab/) - полный комплект учебных материалов
+- ☁️ [Лабораторная работа №3 (Backend, Yandex Cloud)](lab-cloud/lab_yc_serverless_application.md)
 - 🌐 [Примеры API запросов](docs/api_examples.md) - сравнение curl, HTTPie и PowerShell
 
 ## ⚠️ Важные нюансы и подводные камни

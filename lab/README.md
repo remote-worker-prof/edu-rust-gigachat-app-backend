@@ -11,6 +11,7 @@
 5. **git_github_setup.md** - Практикум по SSH‑ключам и подключению локального репозитория к GitHub
 6. **git_version_control.md** - Практикум по базовым операциям Git и рекомендованному workflow
 7. **beads_guide.md** - Практикум по issue‑трекеру beads и workflow с git
+8. **../lab-cloud/lab_yc_serverless_application.md** - Лабораторная работа №3 (Backend): развёртывание в Yandex Cloud
 
 ## Для преподавателя
 
@@ -25,6 +26,7 @@
 5. При работе с GitHub используйте практикум `git_github_setup.md`
 6. При работе с Git используйте практикум `git_version_control.md`
 7. При работе с задачами используйте практикум `beads_guide.md`
+8. Для облачной практики используйте `../lab-cloud/lab_yc_serverless_application.md`
 
 ## Связанные документы
 
